@@ -1,3 +1,10 @@
+### Fork of the [hughsk/rm-modules](https://github.com/hughsk/rm-modules) package with some fixes. [![Latest Published Version](https://img.shields.io/npm/v/@ns0m/rm-modules)](https://www.npmjs.com/package/@ns0m/rm-modules)
+```
+npm install -g @ns0m/rm-modules
+```
+
+---
+
 # rm-modules
 ![](http://img.shields.io/badge/stability-experimental-orange.svg?style=flat)
 ![](http://img.shields.io/npm/v/rm-modules.svg?style=flat)
