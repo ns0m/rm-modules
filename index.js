@@ -13,7 +13,12 @@ function remove(root, done) {
     if (path.basename(dir.fullPath) === 'node_modules') {
       dirs.push(dir.fullPath);
     }
-  }).once('end', function() {
+  }).on('warn', function(err) {
+    console.warn('Non-fatal error:', err.message);
+  }).on('error', function(err) {
+    console.error('Fatal error:', err);
+    done(err);
+  }).on('end', function() {
     map(dirs, 1, function(dirname, next) {
       if (fs.existsSync(dirname)) {
         rimraf(dirname, next);
