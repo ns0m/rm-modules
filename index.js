@@ -1,19 +1,17 @@
-var map      = require('map-limit')
-var readdirp = require('readdirp')
-var rimraf   = require('rimraf')
-var path     = require('path')
-var fs       = require('fs')
-
-module.exports = remove
+const fs = require('fs');
+const path = require('path');
+const map = require('map-limit');
+const readdirp = require('readdirp');
+const rimraf = require('rimraf');
 
 function remove(root, done) {
-  var dirs = []
+  const dirs = [];
 
   readdirp(root, {
     type: 'directories'
   }).on('data', function(dir) {
     if (path.basename(dir.fullPath) === 'node_modules') {
-      dirs.push(dir.fullPath)
+      dirs.push(dir.fullPath);
     }
   }).once('end', function() {
     map(dirs, 1, function(dirname, next) {
@@ -23,7 +21,9 @@ function remove(root, done) {
         rimraf(dirname, next)
       })
     }, function(err) {
-      done(err)
-    })
-  })
+      done(err);
+    });
+  });
 }
+
+module.exports = remove;
