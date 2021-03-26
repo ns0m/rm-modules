@@ -15,11 +15,11 @@ function remove(root, done) {
     }
   }).once('end', function() {
     map(dirs, 1, function(dirname, next) {
-      fs.exists(dirname, function(exists) {
-        if (!exists) return next()
-
-        rimraf(dirname, next)
-      })
+      if (fs.existsSync(dirname)) {
+        rimraf(dirname, next);
+      } else {
+        next();
+      }
     }, function(err) {
       done(err);
     });
