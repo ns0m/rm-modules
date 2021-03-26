@@ -9,9 +9,8 @@ module.exports = remove
 function remove(root, done) {
   var dirs = []
 
-  readdirp({
-      root: root
-    , entryType: 'directories'
+  readdirp(root, {
+    type: 'directories'
   }).on('data', function(dir) {
     if (path.basename(dir.fullPath) === 'node_modules') {
       dirs.push(dir.fullPath)
